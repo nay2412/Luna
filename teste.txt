@@ -1,16 +1,172 @@
-def calculadora(): 
+def calculadora():
+    while True:
+        try:
+            print("\n--- Calculadora ---")
+            num1 = float(input("Digite o primeiro número: "))
+            operacao = input("Digite a operação (+, -, *, /): ").strip()
+            num2 = float(input("Digite o segundo número: "))
+
+            if operacao == '+':
+                resultado = num1 + num2
+            elif operacao == '-':
+                resultado = num1 - num2
+            elif operacao == '*':
+                resultado = num1 * num2
+            elif operacao == '/':
+                if num2 == 0:
+                    print("Erro: Divisão por zero não é permitida.")
+                    continue
+                resultado = num1 / num2
+            else:
+                print("Operação inválida!")
+                continue
+
+            print(f"Resultado: {num1} {operacao} {num2} = {resultado}")
+        except ValueError:
+            print("Erro: Digite apenas números válidos.")
+            continue
+
+        while True:
+            continuar = input("\nDeseja fazer outro cálculo? (s/n): ").strip().lower()
+            if continuar == 's':
+                break
+            elif continuar == 'n':
+                return
+            else:
+                print("Opção inválida! Digite 's' para sim ou 'n' para não.")
+
+
 
  
 
-def media_notas(): 
+def media_notas():
+    while True:
+        try:
+            print("\n--- Cálculo de Média do Aluno ---")
+            qtd_notas = int(input("Quantas notas deseja calcular? "))
+            if qtd_notas <= 0:
+                print("Quantidade de notas deve ser maior que zero.")
+                continue
+
+            notas = []
+            for i in range(qtd_notas):
+                nota = float(input(f"Digite a nota {i+1}: "))
+                if nota < 0 or nota > 10:
+                    print("Nota inválida! Digite uma nota entre 0 e 10.")
+                    break
+                notas.append(nota)
+            else:
+                media = sum(notas) / qtd_notas
+                print(f"Média do aluno: {media:.2f}")
+
+                if media >= 7:
+                    print("Situação: Aprovado")
+                elif media >= 5:
+                    print("Situação: Recuperação")
+                    while True:
+                        try:
+                            nota_rec = float(input("Digite a nota da recuperação (0 a 10): "))
+                            if 0 <= nota_rec <= 10:
+                                nova_media = (media + nota_rec) / 2
+                                print(f"Nova média após recuperação: {nova_media:.2f}")
+                                if nova_media >= 5:
+                                    print("Situação: Aprovado após recuperação")
+                                else:
+                                    print("Situação: Reprovado após recuperação")
+                                break
+                            else:
+                                print("Nota inválida! Digite entre 0 e 10.")
+                        except ValueError:
+                            print("Erro: Digite um número válido.")
+                else:
+                    print("Situação: Reprovado")
+
+        except ValueError:
+            print("Erro: Digite um número inteiro válido para a quantidade de notas.")
+            continue
+
+        while True:
+            continuar = input("\nDeseja lançar outras notas? (s/n): ").strip().lower()
+            if continuar == 's':
+                break
+            elif continuar == 'n':
+                return
+            else:
+                print("Opção inválida! Digite 's' para sim ou 'n' para não.")
+
+
 
  
 
-def bonificacao_rh(): 
+def bonificacao_rh():
+    while True:
+        try:
+            print("\n--- Bonificação do RH ---")
+            salario = float(input("Digite o salário do funcionário: R$ "))
+            if salario < 0:
+                print("Salário não pode ser negativo.")
+                continue
+
+            bonificacao = 0
+            if salario < 5000:
+                bonificacao = 1000
+            elif salario < 7000:
+                bonificacao = 650
+
+            salario_final = salario + bonificacao
+            print(f"Salário original: R$ {salario:.2f}")
+            print(f"Bonificação: R$ {bonificacao:.2f}")
+            print(f"Salário final: R$ {salario_final:.2f}")
+
+        except ValueError:
+            print("Erro: Digite um valor numérico válido para o salário.")
+            continue
+
+        while True:
+            continuar = input("\nDeseja calcular outra bonificação? (s/n): ").strip().lower()
+            if continuar == 's':
+                break
+            elif continuar == 'n':
+                return
+            else:
+                print("Opção inválida! Digite 's' para sim ou 'n' para não.")
+
+
 
  
 
-def comissao_vendas(): 
+def comissao_vendas():
+    while True:
+        try:
+            print("\n--- Comissão de Vendas ---")
+            venda = float(input("Digite o valor da venda do funcionário: R$ "))
+            if venda < 0:
+                print("Valor de venda não pode ser negativo.")
+                continue
+
+            if venda > 100000:
+                comissao = venda * 0.10
+                salario_final = venda + comissao  # Considerando a venda como base do salário (ou pode ser adicionado a um salário fixo)
+                print("Parabéns! Meta atingida!")
+                print(f"Comissão (10%): R$ {comissao:.2f}")
+                print(f"Novo salário (venda + comissão): R$ {salario_final:.2f}")
+            else:
+                print("Atenção!!!!! Meta não atendida!!! Precisa melhorar")
+
+        except ValueError:
+            print("Erro: Digite um valor numérico válido para a venda.")
+            continue
+
+        while True:
+            continuar = input("\nDeseja registrar outra venda? (s/n): ").strip().lower()
+            if continuar == 's':
+                break
+            elif continuar == 'n':
+                return
+            else:
+                print("Opção inválida! Digite 's' para sim ou 'n' para não.")
+
+
 
  
 
